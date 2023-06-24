@@ -22,7 +22,7 @@ const Chart = () => {
     <View
       style={{
         marginTop: 20,
-        marginBottom: 10,
+        marginBottom: 15,
         padding: 16,
         borderRadius: 20,
         backgroundColor: '#42224a',

@@ -9,7 +9,7 @@ import Chart from '../components/home/Chart';
 const Home = () => {
   return (
     <View style={styles.container}>
-      <Text style={{fontSize: 25, fontWeight: 400,color:'black'}}>
+      <Text style={{fontSize: 25, fontWeight: 400,color:'#000'}}>
         Expense <Text style={{color: '#42224a', fontWeight:600}}>Tracker</Text>
       </Text>
 

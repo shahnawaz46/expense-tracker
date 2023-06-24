@@ -45,7 +45,7 @@ const transaction = [
   },
   {
     id: 5,
-    tag: 'Transport',
+    tag: 'Travel',
     title: 'Bike Petrol',
     description: 'Bike petrol for going Okhla with friends',
     price: '110 Rs',
@@ -114,7 +114,7 @@ const tagImages = {
   Clothing: require('../../asset/clothing.png'),
   Shoes: require('../../asset/shoes.png'),
   Food: require('../../asset/food.png'),
-  Transport: require('../../asset/transport.png'),
+  Travel: require('../../asset/travel.png'),
   Electronics: require('../../asset/electronics.png'),
   Broadband: require('../../asset/broadband.png'),
   Payment: require('../../asset/payment.png'),
@@ -127,7 +127,7 @@ const tagImages = {
 const RecentTransaction = () => {
   return (
     <View style={{flex: 1}}>
-      <Text style={{fontSize: 19, color: 'black', fontWeight: 500}}>
+      <Text style={{fontSize: 19, color: '#000', fontWeight: 500}}>
         Recent Transactions
       </Text>
 
@@ -187,5 +187,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     rowGap: 10,
     gap: 10,
+    // backgroundColor:'red'
   },
 });
