@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import {Dropdown} from 'react-native-element-dropdown';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -18,7 +18,7 @@ const tags = [
 ];
 
 const DropDown = ({value, onChangeText}) => {
-  console.log(value)
+  console.log(value);
   return (
     <Dropdown
       style={styles.dropDown}
@@ -27,12 +27,17 @@ const DropDown = ({value, onChangeText}) => {
       placeholder="Select Tag"
       data={tags}
       labelField={'name'}
-      valueField={'id'}
+      valueField={'name'}
       maxHeight={200}
       value={value}
       onChange={onChangeText}
       renderLeftIcon={() => (
-        <Ionicons name="pricetag" size={20} color={"#42224a"} style={{marginRight: 10}} />
+        <Ionicons
+          name="pricetag"
+          size={20}
+          color={'#42224a'}
+          style={{marginRight: 10}}
+        />
       )}
     />
   );

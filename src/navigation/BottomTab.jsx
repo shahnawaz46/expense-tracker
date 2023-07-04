@@ -31,14 +31,17 @@ const BottomTab = () => {
         component={Home}
         options={{
           tabBarIcon: ({focused}) => (
-            <View style={{alignItems:'center', justifyContent:'center'}}>
-            <Icon
-              name={'home-sharp'}
-              color={focused ? '#42224a' : '#748c94'}
-              size={26}
-            />
-            <Text style={{color: focused ? '#42224a' : '#748c94', fontSize:12}}>Home</Text>
-          </View>
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+              <Icon
+                name={'home-sharp'}
+                color={focused ? '#42224a' : '#748c94'}
+                size={26}
+              />
+              <Text
+                style={{color: focused ? '#42224a' : '#748c94', fontSize: 12}}>
+                Home
+              </Text>
+            </View>
           ),
         }}
       />
@@ -47,13 +50,16 @@ const BottomTab = () => {
         component={Transaction}
         options={{
           tabBarIcon: ({focused}) => (
-            <View style={{alignItems:'center', justifyContent:'center'}}>
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <Icon
                 name={'wallet'}
                 color={focused ? '#42224a' : '#748c94'}
                 size={26}
               />
-              <Text style={{color: focused ? '#42224a' : '#748c94', fontSize:12}}>Transaction</Text>
+              <Text
+                style={{color: focused ? '#42224a' : '#748c94', fontSize: 12}}>
+                Transaction
+              </Text>
             </View>
           ),
         }}
@@ -79,13 +85,16 @@ const BottomTab = () => {
         component={Stats}
         options={{
           tabBarIcon: ({focused}) => (
-            <View style={{alignItems:'center', justifyContent:'center'}}>
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <Icon
                 name={'bar-chart'}
                 color={focused ? '#42224a' : '#748c94'}
                 size={26}
               />
-              <Text style={{color: focused ? '#42224a' : '#748c94', fontSize:12}}>Stats</Text>
+              <Text
+                style={{color: focused ? '#42224a' : '#748c94', fontSize: 12}}>
+                Stats
+              </Text>
             </View>
           ),
         }}
@@ -95,14 +104,17 @@ const BottomTab = () => {
         component={Profile}
         options={{
           tabBarIcon: ({focused}) => (
-            <View style={{alignItems:'center', justifyContent:'center'}}>
-            <Icon
-              name={'person-sharp'}
-              color={focused ? '#42224a' : '#748c94'}
-              size={26}
-            />
-            <Text style={{color: focused ? '#42224a' : '#748c94', fontSize:12}}>Profile</Text>
-          </View>
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+              <Icon
+                name={'person-sharp'}
+                color={focused ? '#42224a' : '#748c94'}
+                size={26}
+              />
+              <Text
+                style={{color: focused ? '#42224a' : '#748c94', fontSize: 12}}>
+                Profile
+              </Text>
+            </View>
           ),
         }}
       />

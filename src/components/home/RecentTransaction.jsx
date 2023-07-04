@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  FlatList,
-  Image,
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
 
 const transaction = [
   {
@@ -16,7 +8,8 @@ const transaction = [
     title: 'Buy Clothes',
     description: 'Buy 2 shirts and 1 jeans from 27 Block',
     price: '1350 Rs',
-    date: '19/06/2023 - 7:18PM',
+    date: '1/6/2023',
+    time: '7:18 PM',
   },
   {
     id: 2,
@@ -24,7 +17,8 @@ const transaction = [
     title: 'Buy Shoes',
     description: 'Buy Shoes for Bakra Eid in Trilok puri 26 Block',
     price: '1000 Rs',
-    date: '220/06/2023 - 6:50PM',
+    date: '20/06/2023',
+    time: '6:50PM',
   },
   {
     id: 3,
@@ -33,7 +27,8 @@ const transaction = [
     description:
       'Eat Chicken Roll and Cold Drink with Friends at Zaika Roll in Samachar Appartment',
     price: '150 Rs',
-    date: '21/06/2023 - 6:50PM',
+    date: '21/06/2023',
+    time: '6:50PM',
   },
   {
     id: 4,
@@ -41,7 +36,8 @@ const transaction = [
     title: 'Nahari Roti',
     description: 'Eat Nahari Roti with friends at Zakir Famous Nahari in Okhla',
     price: '200 Rs',
-    date: '22/06/2023 - 9:26PM',
+    date: '22/06/2023',
+    time: '9:26PM',
   },
   {
     id: 5,
@@ -49,7 +45,8 @@ const transaction = [
     title: 'Bike Petrol',
     description: 'Bike petrol for going Okhla with friends',
     price: '110 Rs',
-    date: '23/06/2023 - 7:39PM',
+    date: '23/06/2023',
+    time: '7:39PM',
   },
   {
     id: 6,
@@ -166,7 +163,7 @@ const RecentTransaction = () => {
                   {item.price}
                 </Text>
                 <Text style={{color: '#aaafb5', fontSize: 13}}>
-                  {item.date}
+                  {item.date} - {item.time}
                 </Text>
               </View>
             </Pressable>

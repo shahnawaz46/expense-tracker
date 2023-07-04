@@ -1,7 +1,5 @@
 import React from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const CustomInput = ({placeholder, iconName, value, onChangeText, type="default"}) => {

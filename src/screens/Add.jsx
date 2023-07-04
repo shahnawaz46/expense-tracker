@@ -1,14 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import CustomInput from '../components/input/CustomInput';
 import DropDown from '../components/input/DropDown';
+import DatePicker from '../components/input/DatePicker';
 
 const Add = () => {
   const [transactionValue, setTransactionValue] = useState({
     title: '',
     description: '',
-    price: '',
+    price: null,
     tag: '',
+    date: '',
+    time: '',
   });
   const [validationError, setValidationError] = useState();
 
@@ -30,12 +33,25 @@ const Add = () => {
     } else if (transactionValue.price == '') {
       onValidation('Please Enter Price');
       return;
+    } else if (transactionValue.date == '') {
+      onValidation('Please Select Date');
+      return;
+    } else if (transactionValue.time == '') {
+      onValidation('Please Select Time');
+      return;
     } else if (transactionValue.tag == '') {
       onValidation('Please Select Tag');
       return;
     }
 
-    setTransactionValue({title: '', description: '', price: '', tag: ''});
+    setTransactionValue({
+      title: '',
+      description: '',
+      price: '',
+      tag: '',
+      date: '',
+      time: '',
+    });
   };
 
   return (
@@ -71,7 +87,6 @@ const Add = () => {
           onChangeText={txt =>
             setTransactionValue({...transactionValue, description: txt})
           }
-          valida
         />
 
         <CustomInput
@@ -81,8 +96,53 @@ const Add = () => {
           onChangeText={txt =>
             setTransactionValue({...transactionValue, price: txt})
           }
-          type='numeric'
+          type="numeric"
         />
+
+        {/* date and time select components */}
+        <View
+          style={{
+            flexDirection: 'row',
+            width: '90%',
+            gap: 15,
+            alignSelf: 'center',
+          }}>
+          <DatePicker
+            placeholder={'Select Date'}
+            value={transactionValue.date}
+            onPickupDateAndTime={selectedDate => {
+              let date = new Date(selectedDate);
+              return setTransactionValue({
+                ...transactionValue,
+                date: `${
+                  date.getDate() <= 9 ? '0' + date.getDate() : date.getDate()
+                }/${date.getMonth() + 1}/${date.getFullYear()}`,
+              });
+            }}
+            mode="date"
+            iconName="calendar"
+          />
+
+          <DatePicker
+            placeholder={'Select Time'}
+            value={transactionValue.time}
+            onPickupDateAndTime={selectedDate => {
+              let date = new Date(selectedDate);
+              return setTransactionValue({
+                ...transactionValue,
+                time: `${
+                  date.getHours() % 12 == 0 ? 12 : date.getHours() % 12
+                }:${
+                  date.getMinutes() <= 9
+                    ? '0' + date.getMinutes()
+                    : date.getMinutes()
+                }${date.getHours() >= 12 ? 'PM' : 'AM'}`,
+              });
+            }}
+            mode="time"
+            iconName="time"
+          />
+        </View>
 
         <DropDown
           value={transactionValue.tag}

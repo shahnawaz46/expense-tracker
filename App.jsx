@@ -6,9 +6,9 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background:"#ffffff"
+    background: '#ffffff',
   },
-}
+};
 
 const App = () => {
   return (
