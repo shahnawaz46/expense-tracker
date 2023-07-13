@@ -8,17 +8,17 @@ const tags = [
   {id: '102', name: 'Food'},
   {id: '103', name: 'Shoes'},
   {id: '104', name: 'Travel'},
-  {id: '105', name: 'Electronics'},
-  {id: '106', name: 'Broadband'},
-  {id: '107', name: 'Payment'},
-  {id: '108', name: 'Bill'},
-  {id: '109', name: 'Rent'},
-  {id: '110', name: 'Doctor'},
-  {id: '111', name: 'Medicines'},
+  {id: '115', name: 'Books'},
+  {id: '106', name: 'Electronics'},
+  {id: '107', name: 'Broadband'},
+  {id: '108', name: 'Payment'},
+  {id: '109', name: 'Bill'},
+  {id: '110', name: 'Rent'},
+  {id: '111', name: 'Doctor'},
+  {id: '112', name: 'Medicines'},
 ];
 
 const DropDown = ({value, onChangeText}) => {
-  console.log(value);
   return (
     <Dropdown
       style={styles.dropDown}
@@ -47,7 +47,7 @@ export default React.memo(DropDown);
 
 const styles = StyleSheet.create({
   dropDown: {
-    width: '90%',
+    width: '95%',
     height: 50,
     borderWidth: 0.5,
     borderRadius: 10,

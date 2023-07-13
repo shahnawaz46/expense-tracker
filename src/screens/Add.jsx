@@ -1,10 +1,18 @@
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {useDispatch} from 'react-redux';
+import axios from 'axios';
+import Toast from 'react-native-toast-message';
+
+// components
 import CustomInput from '../components/input/CustomInput';
 import DropDown from '../components/input/DropDown';
 import DatePicker from '../components/input/DatePicker';
+import {URL} from '../api/URL';
+import {updateRecentTransaction} from '../redux/slice/RecentTransactionSlice';
 
 const Add = () => {
+  const dispatch = useDispatch();
   const [transactionValue, setTransactionValue] = useState({
     title: '',
     description: '',
@@ -13,24 +21,23 @@ const Add = () => {
     date: '',
     time: '',
   });
-  const [validationError, setValidationError] = useState();
 
   const onValidation = msg => {
-    setValidationError(msg);
-    setTimeout(() => {
-      setValidationError();
-    }, 1500);
+    Toast.show({
+      type: 'error',
+      text1: msg,
+      topOffset: 30,
+    });
   };
 
-  const storeTransactionDetails = () => {
-    console.log(transactionValue);
+  const storeTransactionDetails = async () => {
     if (transactionValue.title == '') {
       onValidation('Please Enter Title');
       return;
     } else if (transactionValue.description == '') {
       onValidation('Please Enter Description');
       return;
-    } else if (transactionValue.price == '') {
+    } else if (transactionValue.price == '' || transactionValue.price == null) {
       onValidation('Please Enter Price');
       return;
     } else if (transactionValue.date == '') {
@@ -44,11 +51,30 @@ const Add = () => {
       return;
     }
 
+    try {
+      const res = await axios.post(`${URL}/add_transaction`, {
+        ...transactionValue,
+        price: parseInt(transactionValue.price),
+        _id: '951753',
+      });
+
+      Toast.show({
+        type: 'success',
+        text1: res.data.msg,
+        topOffset: 30,
+      });
+
+      dispatch(updateRecentTransaction(res.data));
+    } catch (err) {
+      console.log(err);
+      onValidation('Something Went Wrong Please Try Again');
+    }
+
     setTransactionValue({
       title: '',
       description: '',
       price: '',
-      tag: '',
+      tag: null,
       date: '',
       time: '',
     });
@@ -56,15 +82,6 @@ const Add = () => {
 
   return (
     <View style={styles.formContainer}>
-      {/* for show error message */}
-      <View
-        style={{
-          ...styles.errorMessage,
-          display: validationError ? 'flex' : 'none',
-        }}>
-        <Text style={{fontSize: 15, color: 'white'}}>{validationError}</Text>
-      </View>
-
       <Image
         source={require('../asset/logo.png')}
         style={{width: 60, height: 60, borderRadius: 50}}
@@ -90,7 +107,7 @@ const Add = () => {
         />
 
         <CustomInput
-          placeholder={'Enter Price'}
+          placeholder={'Enter Price (only Rupee)'}
           iconName={'wallet'}
           value={transactionValue.price}
           onChangeText={txt =>
@@ -103,7 +120,7 @@ const Add = () => {
         <View
           style={{
             flexDirection: 'row',
-            width: '90%',
+            width: '95%',
             gap: 15,
             alignSelf: 'center',
           }}>
@@ -116,7 +133,11 @@ const Add = () => {
                 ...transactionValue,
                 date: `${
                   date.getDate() <= 9 ? '0' + date.getDate() : date.getDate()
-                }/${date.getMonth() + 1}/${date.getFullYear()}`,
+                }/${
+                  date.getMonth() < 9
+                    ? '0' + (date.getMonth() + 1)
+                    : date.getMonth() + 1
+                }/${date.getFullYear()}`,
               });
             }}
             mode="date"
@@ -182,7 +203,7 @@ const styles = StyleSheet.create({
 
   inputBtn: {
     backgroundColor: '#42224a',
-    width: '90%',
+    width: '95%',
     height: 50,
     alignSelf: 'center',
     borderRadius: 10,

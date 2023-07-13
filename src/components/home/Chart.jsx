@@ -2,22 +2,22 @@ import {Text, View} from 'react-native';
 import React from 'react';
 import {BarChart} from 'react-native-gifted-charts';
 
-const data = [
-  {value: 500, label: 'Jan'},
-  {value: 300, label: 'Feb'},
-  {value: 230, label: 'Mar'},
-  {value: 520, label: 'Apr'},
-  {value: 20, label: 'May'},
-  {value: 415, label: 'Jun'},
-  {value: 700, label: 'Jul'},
-  {value: 1569, label: 'Aug'},
+const tempData = [
+  {value: 0, label: 'Jan'},
+  {value: 0, label: 'Feb'},
+  {value: 0, label: 'Mar'},
+  {value: 0, label: 'Apr'},
+  {value: 0, label: 'May'},
+  {value: 0, label: 'Jun'},
+  {value: 0, label: 'Jul'},
+  {value: 0, label: 'Aug'},
   {value: 0, label: 'Sep'},
   {value: 0, label: 'Oct'},
   {value: 0, label: 'Nov'},
   {value: 0, label: 'Dec'},
 ];
 
-const Chart = () => {
+const Chart = ({chartData}) => {
   return (
     <View
       style={{
@@ -28,7 +28,8 @@ const Chart = () => {
         backgroundColor: '#42224a',
       }}>
       <Text style={{color: 'white', fontSize: 18, fontWeight: '500'}}>
-        Total: 5000 Rs
+        Total: {chartData.reduce((total, current) => total + current.value, 0)}{' '}
+        Rs
       </Text>
       <View
         style={{
@@ -37,7 +38,7 @@ const Chart = () => {
           alignItems: 'center',
         }}>
         <BarChart
-          data={data}
+          data={chartData.length > 0 ? chartData : tempData}
           barWidth={30}
           height={150}
           initialSpacing={10}

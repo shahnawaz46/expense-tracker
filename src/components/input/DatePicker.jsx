@@ -51,7 +51,7 @@ export default DatePicker;
 
 const styles = StyleSheet.create({
   input: {
-    width: '47.6%',
+    width: '47.8%',
     height: 50,
     borderWidth: 0.5,
     borderRadius: 10,
