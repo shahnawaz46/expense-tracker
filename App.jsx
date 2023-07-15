@@ -1,11 +1,12 @@
 import React from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {Provider} from 'react-redux';
-import Toast, {BaseToast, ErrorToast, SuccessToast} from 'react-native-toast-message';
+import Toast, {ErrorToast, SuccessToast} from 'react-native-toast-message';
 
 // components
 import BottomTab from './src/navigation/BottomTab';
 import Store from './src/redux/Store';
+import {StatusBar} from 'react-native';
 
 const theme = {
   ...DefaultTheme,
@@ -39,6 +40,7 @@ const toastConfig = {
 const App = () => {
   return (
     <Provider store={Store}>
+      <StatusBar backgroundColor={'#42224a'} />
       <NavigationContainer theme={theme}>
         <BottomTab />
       </NavigationContainer>

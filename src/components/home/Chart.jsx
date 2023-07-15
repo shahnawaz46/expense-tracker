@@ -1,4 +1,4 @@
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {BarChart} from 'react-native-gifted-charts';
 
@@ -17,20 +17,20 @@ const tempData = [
   {value: 0, label: 'Dec'},
 ];
 
+const currentYear = new Date().getFullYear();
+
 const Chart = ({chartData}) => {
   return (
-    <View
-      style={{
-        marginTop: 20,
-        marginBottom: 15,
-        padding: 16,
-        borderRadius: 20,
-        backgroundColor: '#42224a',
-      }}>
-      <Text style={{color: 'white', fontSize: 18, fontWeight: '500'}}>
-        Total: {chartData.reduce((total, current) => total + current.value, 0)}{' '}
-        Rs
-      </Text>
+    <View style={styles.chart_container}>
+      <View style={styles.chart_hearder}>
+        <Text style={styles.chart_header_txt}>
+          Total:{' '}
+          {chartData.reduce((total, current) => total + current.value, 0)} Rs
+        </Text>
+        <Text style={{...styles.chart_header_txt, fontSize:15}}>
+          Year: {currentYear}
+        </Text>
+      </View>
       <View
         style={{
           paddingVertical: 20,
@@ -64,3 +64,24 @@ const Chart = ({chartData}) => {
 };
 
 export default Chart;
+
+const styles = StyleSheet.create({
+  chart_container: {
+    marginTop: 20,
+    marginBottom: 15,
+    padding: 16,
+    borderRadius: 20,
+    backgroundColor: '#42224a',
+  },
+
+  chart_hearder:{
+    flexDirection: "row",
+    justifyContent:'space-between'
+  },
+
+  chart_header_txt:{
+    color: 'white', 
+    fontSize: 18, 
+    fontWeight: '500'
+  }
+});

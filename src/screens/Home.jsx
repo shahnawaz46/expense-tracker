@@ -1,16 +1,19 @@
 import React, {useEffect} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View, Dimensions} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import Modal from 'react-native-modal';
 
 // components
 import RecentTransaction from '../components/home/RecentTransaction';
 import Chart from '../components/home/Chart';
-import { fetchRecentTransactions } from '../redux/slice/RecentTransactionSlice';
+import {fetchRecentTransactions} from '../redux/slice/RecentTransactionSlice';
 
 const Home = () => {
-  const {recentTransactions, chartData, loading, error} = useSelector(state => state.transactions);
+  const {recentTransactions, chartData, loading, error} = useSelector(
+    state => state.transactions,
+  );
   const dispatch = useDispatch();
-  console.log(recentTransactions, chartData)
+  // console.log(recentTransactions, chartData);
 
   useEffect(() => {
     if (loading === 'idle') {
@@ -47,12 +50,17 @@ const Home = () => {
         <>
           <Chart chartData={chartData} />
 
-          <RecentTransaction loading={loading} recentTransactions={recentTransactions} />
+          <RecentTransaction
+            loading={loading}
+            recentTransactions={recentTransactions}
+          />
         </>
       )}
     </View>
   );
 };
+
+
 
 export default Home;
 

@@ -52,7 +52,7 @@ const Add = () => {
     }
 
     try {
-      const res = await axios.post(`${URL}/add_transaction`, {
+      const res = await axios.post(`${URL}/transaction`, {
         ...transactionValue,
         price: parseInt(transactionValue.price),
         _id: '951753',
@@ -66,7 +66,7 @@ const Add = () => {
 
       dispatch(updateRecentTransaction(res.data));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       onValidation('Something Went Wrong Please Try Again');
     }
 
@@ -210,16 +210,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 5,
-  },
-
-  errorMessage: {
-    position: 'absolute',
-    top: 12,
-    left: 12,
-    right: 12,
-    backgroundColor: '#ff3333',
-    padding: 10,
-    alignItems: 'center',
-    borderRadius: 10,
   },
 });
