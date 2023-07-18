@@ -58,13 +58,14 @@ const Add = () => {
         _id: '951753',
       });
 
+      dispatch(updateRecentTransaction(res.data));
+      
       Toast.show({
         type: 'success',
         text1: res.data.msg,
         topOffset: 30,
       });
 
-      dispatch(updateRecentTransaction(res.data));
     } catch (err) {
       // console.log(err);
       onValidation('Something Went Wrong Please Try Again');

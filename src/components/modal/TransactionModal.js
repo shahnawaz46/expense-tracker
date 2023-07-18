@@ -9,13 +9,36 @@ import {
 } from 'react-native';
 import Modal from 'react-native-modal';
 import {URL} from '../../api/URL';
+import {useDispatch} from 'react-redux';
+import {updateRecentTransaction} from '../../redux/slice/RecentTransactionSlice';
+import Toast from 'react-native-toast-message';
 
 const TransactionModal = ({isModalVisible, setIsModalVisible}) => {
-  const deleteTransaction = transactionId => {
-      console.log(transactionId);
-    // const res = axios.delete(`${URL}/transaction`, {
-    //   data: {_id: '951753', transactionId},
-    // });
+  const dispatch = useDispatch();
+
+  const deleteTransaction = async () => {
+    try {
+      const {_id, date, price} = isModalVisible.item;
+      const res = await axios.delete(`${URL}/transaction`, {
+        data: {_id: '951753', transactionId: _id, date, price},
+      });
+
+      dispatch(updateRecentTransaction(res.data));
+
+      Toast.show({
+        type: 'success',
+        text1: 'Transaction Deleted Successfully',
+        topOffset: 30,
+      });
+    } catch (err) {
+      console.log(err);
+      Toast.show({
+        type: 'error',
+        text1: 'Something Went Wrong Please Try Again',
+        topOffset: 30,
+      });
+    }
+    setIsModalVisible(prev => ({...prev, status: false}));
   };
   return (
     <Modal
@@ -68,9 +91,7 @@ const TransactionModal = ({isModalVisible, setIsModalVisible}) => {
           {new Date(isModalVisible.item.timestamps).toLocaleString()}
         </Text>
 
-        <TouchableOpacity
-          style={styles.modalBtn}
-          onPress={() => deleteTransaction(isModalVisible.item._id)}>
+        <TouchableOpacity style={styles.modalBtn} onPress={deleteTransaction}>
           <Text style={{color: '#fff', fontSize: 18}}>Delete</Text>
         </TouchableOpacity>
       </View>
