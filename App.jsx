@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {Provider} from 'react-redux';
 import Toast, {ErrorToast, SuccessToast} from 'react-native-toast-message';
+import SplashScreen from 'react-native-splash-screen';
 
 // components
 import BottomTab from './src/navigation/BottomTab';
@@ -38,6 +39,10 @@ const toastConfig = {
 };
 
 const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <Provider store={Store}>
       <StatusBar backgroundColor={'#42224a'} />

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Image, StyleSheet, Text, View } from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 // components
@@ -12,7 +12,7 @@ const Home = () => {
     state => state.transactions,
   );
   const dispatch = useDispatch();
-  // console.log(recentTransactions, chartData);
+  console.log(recentTransactions, chartData, loading);
 
   useEffect(() => {
     if (loading === 'idle') {
@@ -20,14 +20,15 @@ const Home = () => {
     }
   }, []);
 
-  // if (loading === 'failed') {
-  //   console.log(error);
-  //   return (
-  //     <View>
-  //       <Text>Opps..</Text>
-  //     </View>
-  //   );
-  // }
+  if (loading === 'failed') {
+    console.log(error);
+    return (
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <Text style={{fontSize: 20}}>{error}</Text>
+        <Text style={{fontSize: 20}}>{'Please restart the app'}</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -58,8 +59,6 @@ const Home = () => {
     </View>
   );
 };
-
-
 
 export default Home;
 

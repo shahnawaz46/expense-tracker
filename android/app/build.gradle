@@ -155,6 +155,9 @@ dependencies {
     // For animated GIF support
     implementation('com.facebook.fresco:animated-gif:2.5.0')
 
+    // for splash screen
+    implementation project(':react-native-splash-screen')
+
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")

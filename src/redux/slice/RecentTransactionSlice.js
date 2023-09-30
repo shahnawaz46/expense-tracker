@@ -16,6 +16,7 @@ export const fetchRecentTransactions = createAsyncThunk(
     const res = await axios.get(
       `${URL}/recent_transaction?_id=951753&year=${currentYear}`,
     );
+    console.log('res: ', res);
     return res.data;
   },
 );
