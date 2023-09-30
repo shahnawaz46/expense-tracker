@@ -6,16 +6,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const tags = [
   {id: '100', name: 'Clothing'},
   {id: '102', name: 'Food'},
-  {id: '103', name: 'Shoes'},
+  {id: '103', name: 'Medical/Healthcare'},
   {id: '104', name: 'Travel'},
-  {id: '115', name: 'Books'},
+  {id: '105', name: 'Education'},
   {id: '106', name: 'Electronics'},
   {id: '107', name: 'Broadband'},
   {id: '108', name: 'Payment'},
   {id: '109', name: 'Bill'},
   {id: '110', name: 'Rent'},
-  {id: '111', name: 'Doctor'},
-  {id: '112', name: 'Medicines'},
 ];
 
 const DropDown = ({value, onChangeText}) => {

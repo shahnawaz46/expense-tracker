@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {BarChart} from 'react-native-gifted-charts';
 
 const tempData = [
@@ -20,14 +20,29 @@ const tempData = [
 const currentYear = new Date().getFullYear();
 
 const Chart = ({chartData}) => {
+  const [updatedChartData, setUpdatedChartData] = useState([]);
+
+  useEffect(() => {
+    setUpdatedChartData(
+      chartData?.map(item => ({
+        ...item,
+        topLabelComponent: () => (
+          <Text style={{color: '#fff', fontSize: 10, marginBottom: 6}}>
+            {item.value}
+          </Text>
+        ),
+      })),
+    );
+  }, [chartData]);
+
   return (
     <View style={styles.chart_container}>
       <View style={styles.chart_hearder}>
         <Text style={styles.chart_header_txt}>
           Total:{' '}
-          {chartData.reduce((total, current) => total + current.value, 0)} Rs
+          {chartData?.reduce((total, current) => total + current.value, 0)} Rs
         </Text>
-        <Text style={{...styles.chart_header_txt, fontSize:15}}>
+        <Text style={{...styles.chart_header_txt, fontSize: 15}}>
           Year: {currentYear}
         </Text>
       </View>
@@ -38,12 +53,11 @@ const Chart = ({chartData}) => {
           alignItems: 'center',
         }}>
         <BarChart
-          data={chartData.length > 0 ? chartData : tempData}
+          data={updatedChartData?.length > 0 ? updatedChartData : tempData}
           barWidth={30}
           height={150}
           initialSpacing={10}
-          gradientColor={'red'}
-          barBorderRadius={2}
+          hideDataPoints={true}
           rulesType={false}
           lineData={10}
           dashGap={10}
@@ -57,6 +71,7 @@ const Chart = ({chartData}) => {
           yAxisLabelWidth={60}
           xAxisLabelTextStyle={{color: 'lightgray', textAlign: 'center'}}
           yAxisAtTop={1}
+          // isAnimated
         />
       </View>
     </View>
@@ -74,14 +89,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#42224a',
   },
 
-  chart_hearder:{
-    flexDirection: "row",
-    justifyContent:'space-between'
+  chart_hearder: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
-  chart_header_txt:{
-    color: 'white', 
-    fontSize: 18, 
-    fontWeight: '500'
-  }
+  chart_header_txt: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: '500',
+  },
 });

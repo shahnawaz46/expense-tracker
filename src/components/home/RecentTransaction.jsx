@@ -3,18 +3,16 @@ import {FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import TransactionModal from '../modal/TransactionModal';
 
 const tagImages = {
-  Clothing: require('../../asset/clothing.png'),
-  Shoes: require('../../asset/shoes.png'),
-  Food: require('../../asset/food.png'),
-  Travel: require('../../asset/travel.png'),
-  Books: require('../../asset/book.png'),
-  Electronics: require('../../asset/electronics.png'),
-  Broadband: require('../../asset/broadband.png'),
-  Payment: require('../../asset/payment.png'),
-  Bill: require('../../asset/bill.png'),
-  Rent: require('../../asset/rent.png'),
-  Doctor: require('../../asset/doctor.png'),
-  Medicines: require('../../asset/medicine.png'),
+  "Clothing": require('../../asset/clothing.png'),
+  "Food": require('../../asset/food.png'),
+  "Travel": require('../../asset/travel.png'),
+  "Education": require('../../asset/education.png'),
+  "Electronics": require('../../asset/electronics.png'),
+  "Broadband": require('../../asset/broadband.png'),
+  "Payment": require('../../asset/payment.png'),
+  "Bill": require('../../asset/bill.png'),
+  "Rent": require('../../asset/rent.png'),
+  "Medical/Healthcare": require('../../asset/healthcare.png'),
 };
 
 const RecentTransaction = ({recentTransactions}) => {

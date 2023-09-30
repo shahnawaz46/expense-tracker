@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
-import {Image, StyleSheet, Text, View, Dimensions} from 'react-native';
+import {Image, StyleSheet, Text, View } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import Modal from 'react-native-modal';
 
 // components
 import RecentTransaction from '../components/home/RecentTransaction';
