@@ -34,9 +34,9 @@ const Add = () => {
     if (transactionValue.title == '') {
       onValidation('Please Enter Title');
       return;
-    } else if (transactionValue.description == '') {
-      onValidation('Please Enter Description');
-      return;
+      // } else if (transactionValue.description == '') {
+      //   onValidation('Please Enter Description');
+      //   return;
     } else if (transactionValue.price == '' || transactionValue.price == null) {
       onValidation('Please Enter Price');
       return;
@@ -59,13 +59,12 @@ const Add = () => {
       });
 
       dispatch(updateRecentTransaction(res.data));
-      
+
       Toast.show({
         type: 'success',
         text1: res.data.msg,
         topOffset: 30,
       });
-
     } catch (err) {
       // console.log(err);
       onValidation('Something Went Wrong Please Try Again');
@@ -99,7 +98,7 @@ const Add = () => {
         />
 
         <CustomInput
-          placeholder={'Description'}
+          placeholder={'Description (Optional)'}
           iconName={'newspaper'}
           value={transactionValue.description}
           onChangeText={txt =>

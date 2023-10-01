@@ -3,7 +3,7 @@ import {URL} from '../../api/URL';
 import axios from 'axios';
 
 const initialState = {
-  loading: 'idle',
+  status: 'idle',
   recentTransactions: [],
   chartData: [],
   error: null,
@@ -16,7 +16,6 @@ export const fetchRecentTransactions = createAsyncThunk(
     const res = await axios.get(
       `${URL}/recent_transaction?_id=951753&year=${currentYear}`,
     );
-    console.log('res: ', res);
     return res.data;
   },
 );
@@ -33,15 +32,15 @@ const recentTransactionSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchRecentTransactions.pending, (state, action) => {
-        state.loading = 'pending';
+        state.status = 'pending';
       })
       .addCase(fetchRecentTransactions.fulfilled, (state, action) => {
-        (state.loading = 'succeeded'),
+        (state.status = 'succeeded'),
           (state.recentTransactions = action.payload.recent_transaction);
         state.chartData = action.payload.chart_data;
       })
       .addCase(fetchRecentTransactions.rejected, (state, action) => {
-        (state.loading = 'failed'), (state.error = action.error.message);
+        (state.status = 'failed'), (state.error = action.error.message);
       });
   },
 });

@@ -1,13 +1,16 @@
 import React, {useEffect} from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
-import {Provider} from 'react-redux';
+import {Provider, useDispatch, useSelector} from 'react-redux';
 import Toast, {ErrorToast, SuccessToast} from 'react-native-toast-message';
+import {StatusBar} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 
 // components
 import BottomTab from './src/navigation/BottomTab';
 import Store from './src/redux/Store';
-import {StatusBar} from 'react-native';
+import {fetchRecentTransactions} from './src/redux/slice/RecentTransactionSlice';
+
+// cd ./android && ./gradlew clean && cd .. && npm run android
 
 const theme = {
   ...DefaultTheme,
@@ -39,18 +42,22 @@ const toastConfig = {
 };
 
 const App = () => {
+  const dispatch = useDispatch();
+  const {status} = useSelector(state => state.transactions);
+
   useEffect(() => {
     SplashScreen.hide();
+    if (status === 'idle') dispatch(fetchRecentTransactions());
   }, []);
 
   return (
-    <Provider store={Store}>
+    <>
       <StatusBar backgroundColor={'#42224a'} />
       <NavigationContainer theme={theme}>
         <BottomTab />
       </NavigationContainer>
       <Toast config={toastConfig} />
-    </Provider>
+    </>
   );
 };
 

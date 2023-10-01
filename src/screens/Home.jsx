@@ -1,27 +1,17 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 // components
 import RecentTransaction from '../components/home/RecentTransaction';
 import Chart from '../components/home/Chart';
-import {fetchRecentTransactions} from '../redux/slice/RecentTransactionSlice';
 
 const Home = () => {
-  const {recentTransactions, chartData, loading, error} = useSelector(
+  const {recentTransactions, chartData, status, error} = useSelector(
     state => state.transactions,
   );
-  const dispatch = useDispatch();
-  console.log(recentTransactions, chartData, loading);
 
-  useEffect(() => {
-    if (loading === 'idle') {
-      dispatch(fetchRecentTransactions());
-    }
-  }, []);
-
-  if (loading === 'failed') {
-    console.log(error);
+  if (status === 'failed') {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <Text style={{fontSize: 20}}>{error}</Text>
@@ -36,7 +26,7 @@ const Home = () => {
         Expense <Text style={{color: '#42224a', fontWeight: 600}}>Tracker</Text>
       </Text>
 
-      {loading === 'pending' ? (
+      {status === 'pending' ? (
         <View style={styles.loading}>
           <Image
             source={require('../asset/loading.gif')}
@@ -50,10 +40,7 @@ const Home = () => {
         <>
           <Chart chartData={chartData} />
 
-          <RecentTransaction
-            loading={loading}
-            recentTransactions={recentTransactions}
-          />
+          <RecentTransaction recentTransactions={recentTransactions} />
         </>
       )}
     </View>
@@ -73,6 +60,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 75,
-    // backgroundColor: 'green',
   },
 });
