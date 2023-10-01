@@ -64,10 +64,13 @@ const TransactionModal = ({isModalVisible, setIsModalVisible}) => {
           <Text style={styles.modalTitle}>Title:</Text>{' '}
           {isModalVisible.item.title}
         </Text>
-        <Text style={styles.modalText}>
-          <Text style={styles.modalTitle}>Description:</Text>{' '}
-          {isModalVisible.item.description}
-        </Text>
+
+        {isModalVisible.item.description && (
+          <Text style={styles.modalText}>
+            <Text style={styles.modalTitle}>Description:</Text>{' '}
+            {isModalVisible.item.description}
+          </Text>
+        )}
 
         <Text style={styles.modalText}>
           <Text style={styles.modalTitle}>Price:</Text>{' '}

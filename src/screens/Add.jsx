@@ -66,8 +66,10 @@ const Add = () => {
         topOffset: 30,
       });
     } catch (err) {
-      // console.log(err);
-      onValidation('Something Went Wrong Please Try Again');
+      // console.log(err?.response || err);
+      err?.response?.data?.msg
+        ? onValidation(err?.response?.data?.msg)
+        : onValidation('Something Went Wrong Please Try Again');
     }
 
     setTransactionValue({
